@@ -1,4 +1,39 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Лор — Elseborn</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="lore-style.css"></head><body class="lore-body">
-<header class="site-header"><div class="wrap navwrap"><div class="nav-left"><a class="brand" href="index.html">ELSEBORN</a><nav class="nav nav-primary" aria-label="Основная навигация"><a class="active" aria-current="page" href="lore.html">Лор</a><a href="topics.html">Топики</a><a href="applications.html">Анкеты</a><a href="index.html#donate">Донат</a></nav></div><div class="nav-account"><a class="nav-profile" href="profile.html">Профиль</a><button id="login-btn" class="nav-auth">Войти</button><button id="logout-btn" class="secondary hidden nav-auth">Выйти</button><span id="user-label" class="hidden" aria-hidden="true"></span></div></div></header>
-<main class="lore-main"><div class="lore-shell"><div class="lore-left"><a class="back-link" href="index.html">← На главную</a><div class="eyebrow lore-kicker">ХРОНИКИ МИРА ─────── ✧</div><h1>ЛОР ELSEBORN</h1><p class="lore-lead">История, которая ещё не окончена. Мир, где твои поступки становятся частью легенды.</p><div class="lore-rule">✧</div><div class="lore-detail"><aside class="lore-menu" id="lore-menu" aria-label="Разделы лора"></aside><article class="lore-article" aria-live="polite"><h2 id="lore-heading">Общее описание</h2><div id="lore-text"></div><p class="lore-quote">«Там, где забытые клятвы обретают силу, начинается твоя история.»</p></article></div></div><figure class="lore-visual"><img src="assets/lore-art.png" alt="Поле древней битвы, мечи, черепа и багровый закат"><figcaption>Хроники забытых земель</figcaption></figure></div></main><footer class="footer">© 2026 Elseborn · Dark RP/RPG</footer>
-<div id="auth-modal" class="modal hidden"><div class="modal-card"><button id="modal-close" class="close" aria-label="Закрыть">×</button><div class="eyebrow" style="text-align:center">Твоя история начинается здесь</div><h2 id="auth-title">Войти в Elseborn</h2><form id="auth-form"><div id="signup-fields" class="hidden"><div class="formrow"><label>Имя</label><input id="signup-name" maxlength="50"></div><div class="formrow"><label>Minecraft nickname</label><input id="signup-nick" maxlength="16" pattern="[A-Za-z0-9_]{3,16}"></div></div><div class="formrow"><label>Электронная почта</label><input id="auth-email" type="email" autocomplete="email" required></div><div class="formrow"><label>Пароль</label><input id="auth-password" type="password" minlength="8" required></div><button id="auth-submit" class="wide">Войти</button></form><button id="google-btn" class="wide secondary">Продолжить через Google</button><button id="auth-switch" class="linklike wide">Нет аккаунта? Зарегистрироваться</button><p id="auth-message" class="notice" aria-live="polite"></p></div></div><script src="lore-content.js"></script><script src="lore-page.js"></script><script type="module" src="app.js"></script></body></html>
+// РЕДАКТИРУЙ ЛОР ЗДЕСЬ. Заголовки и тексты можно свободно заменять.
+// Для нового абзаца используй \n внутри строки.
+window.ELSEBORN_LORE = [
+  {
+    "id": "overview",
+    "title": "Общее описание",
+    "text": "Elseborn — мир, в котором история пишется поступками его жителей. Здесь ты сможешь рассказать о происхождении мира, древних клятвах и силах, изменивших судьбы королевств.\n\nЗамени этот пример своим официальным лором в файле lore-content.js."
+  },
+  {
+    "id": "history",
+    "title": "История мира",
+    "text": "Опиши эпохи, войны, становление государств и великие катастрофы."
+  },
+  {
+    "id": "peoples",
+    "title": "Народы и фракции",
+    "text": "Расскажи о народах, расах, гильдиях и политических союзах."
+  },
+  {
+    "id": "faith",
+    "title": "Религии и верования",
+    "text": "Опиши богов, храмы, культы и традиции."
+  },
+  {
+    "id": "geography",
+    "title": "География",
+    "text": "Расскажи о континентах, городах и неизведанных землях."
+  },
+  {
+    "id": "timeline",
+    "title": "Хронология событий",
+    "text": "Составь последовательность важнейших событий мира."
+  },
+  {
+    "id": "characters",
+    "title": "Ключевые персонажи",
+    "text": "Опиши легендарных героев, правителей и антагонистов."
+  }
+];
