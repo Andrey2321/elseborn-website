@@ -3,3 +3,21 @@
 
 /* Elseborn v0.4 — appearance and presence */
 .enhanced-profile{position:relative;display:block;overflow:hidden;padding:0 0 28px}.profile-cover{height:245px;background:linear-gradient(0deg,#1b1016 0%,#3e1a1c65 55%,#100c11aa 100%),url('assets/hero.png') center 46%/cover;position:relative;border-bottom:1px solid #8a5b43}.cover-label{position:absolute;top:20px;right:22px;letter-spacing:.25em;font-size:11px;color:#ead0b4;text-shadow:0 1px 6px #000}.profile-identity{display:flex;gap:24px;align-items:end;margin:-44px 32px 0;position:relative}.profile-identity h2{font:42px Georgia,serif;color:#efd4b5;margin:0 0 8px}.avatar-large{width:116px;height:116px;flex:none;border:4px solid #27191a;box-shadow:0 8px 25px #0008;font-size:52px;background-position:center;background-size:cover;overflow:hidden}.presence{display:flex;align-items:center;gap:8px;margin-top:10px;color:#c7b7aa;font-size:13px}.presence-dot{width:9px;height:9px;border-radius:50%;background:#7b7774;display:inline-block}.presence-dot.online{background:#73d69b;box-shadow:0 0 9px #73d69b70}.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.upload-grid input{font-size:12px;padding:9px;max-width:100%}@media(max-width:650px){.profile-cover{height:160px}.profile-identity{margin:-34px 18px 0;gap:12px;align-items:center}.avatar-large{width:84px;height:84px;font-size:35px}.profile-identity h2{font-size:30px}.upload-grid{grid-template-columns:1fr}}
+
+
+/* Elseborn unified navigation: same layout on every page */
+.site-header .navwrap{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:76px;flex-wrap:nowrap}
+.site-header .nav-left{display:flex;align-items:center;gap:34px;min-width:0}
+.site-header .brand{flex-shrink:0;font-size:25px;letter-spacing:.15em;transition:color .2s}
+.site-header .brand:hover{color:#e6c5a2}
+.site-header .nav-primary{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.site-header .nav-primary a{display:inline-flex;align-items:center;min-height:38px;padding:7px 12px;border:1px solid transparent;border-radius:3px;color:#d7c5bc;font-size:13px;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.site-header .nav-primary a:hover,.site-header .nav-primary a.active{color:#f0d1ad;background:#38272577;border-color:#70504266}
+.site-header .nav-account{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.site-header .nav-profile,.site-header .nav-auth{display:inline-flex;align-items:center;justify-content:center;min-height:37px;padding:8px 15px;font:600 13px system-ui,Segoe UI,sans-serif;text-decoration:none;white-space:nowrap;border-radius:3px;transition:background .2s,border-color .2s,color .2s}
+.site-header .nav-profile{border:1px solid #8e6652;background:#39272380;color:#edc6a3}
+.site-header .nav-profile:hover{background:#50352b;color:#fff0dd}
+.site-header .nav-auth{border:1px solid #765548;background:#24191a;color:#f1e2d5}
+.site-header .nav-auth:hover{background:#48302a;border-color:#bc8d6f}
+@media(max-width:900px){.site-header .navwrap{flex-wrap:wrap;justify-content:center;gap:10px;padding-top:12px;padding-bottom:12px}.site-header .nav-left{flex-wrap:wrap;justify-content:center;gap:8px 22px}.site-header .nav-primary{justify-content:center}.site-header .nav-account{justify-content:center}}
+@media(max-width:480px){.site-header .nav-primary{gap:2px}.site-header .nav-primary a{padding:6px 9px;font-size:12px}.site-header .brand{font-size:22px}}
