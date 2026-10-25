@@ -1,0 +1,7 @@
+/* Elseborn role labels — subtle, consistent with the original dark theme */
+#profile-role.elseborn-role { display:inline-flex; align-items:center; gap:7px; margin-top:6px; padding:4px 10px; border:1px solid var(--role-border); border-radius:3px; background:var(--role-bg); color:var(--role-text); font-weight:700; font-size:12px; letter-spacing:.025em; line-height:1.4; text-shadow:0 0 9px var(--role-glow); box-shadow:inset 0 0 9px var(--role-bg); }
+#profile-role .elseborn-role-symbol { font-size:15px; line-height:1; color:var(--role-text); }
+#profile-role.role-player { --role-text:#e9e5e2; --role-border:#9c979466; --role-bg:#bcb8b30b; --role-glow:#ffffff55; }
+#profile-role.role-ic-admin { --role-text:#90b7e3; --role-border:#688bb66b; --role-bg:#5676a014; --role-glow:#7daff066; }
+#profile-role.role-tech-admin { --role-text:#df8585; --role-border:#b25a5a77; --role-bg:#a54d4d13; --role-glow:#e5787866; }
+#profile-role.role-owner { --role-text:#e2c18b; --role-border:#ad855577; --role-bg:#9c754018; --role-glow:#e1b36b66; }
