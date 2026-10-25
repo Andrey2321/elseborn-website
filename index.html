@@ -2,8 +2,8 @@
 :root{color-scheme:dark;--gold:#e8c5a0;--muted:#bcb0ad}*{box-sizing:border-box}body{margin:0;background:#0c0b10;color:#f6eee9;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}header{position:absolute;z-index:3;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:25px max(5%,calc((100% - 1300px)/2));gap:20px;background:linear-gradient(#100d13a6,transparent)}.logo{font-family:Georgia,serif;font-size:25px;letter-spacing:.17em;color:#fff;text-decoration:none}nav{display:flex;gap:23px;align-items:center;flex-wrap:wrap}nav a{color:#f6eee9;text-decoration:none;font-size:14px;opacity:.85}nav a:hover{opacity:1;color:var(--gold)}button,.btn{border:1px solid #e6b38d;background:#b88062;color:#fff;padding:13px 21px;cursor:pointer;text-decoration:none;display:inline-block;font:600 14px system-ui;border-radius:3px}button:hover,.btn:hover{background:#d49b78}.outline{background:#15101680;border-color:#c9a38d}.hero{min-height:760px;min-height:100svh;background:linear-gradient(180deg,#0b09133d 0%,#110c17a0 65%,#0c0b10 100%),url('assets/hero.png') center center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 90px}.hero-inner{max-width:800px}.eyebrow{text-transform:uppercase;letter-spacing:.36em;font-size:13px;color:#ffddbd}.hero h1{font:clamp(60px,11vw,146px)/1.1 Georgia,serif;letter-spacing:.11em;font-weight:400;margin:16px 0;text-shadow:0 6px 35px #100910}.hero p{font:clamp(17px,2vw,23px)/1.6 Georgia,serif;color:#fff2e9;text-shadow:0 2px 12px #170c12}.actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}section.content{max-width:1150px;margin:auto;padding:75px 24px}h2{font:38px Georgia,serif;color:var(--gold);font-weight:400}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid #51413f;background:#18141a;padding:26px;min-height:190px}.card h3{font:26px Georgia,serif;margin:0 0 12px}.card p{color:var(--muted);line-height:1.7}.note{color:#d6b9a8}footer{text-align:center;border-top:1px solid #3e3034;padding:30px;color:#a89c9b}#auth-status{color:var(--gold);font-size:13px}.hidden{display:none}@media(max-width:850px){header{position:relative;background:#131018;display:block;text-align:center}nav{justify-content:center;margin-top:18px;gap:12px}.hero{min-height:650px}.cards{grid-template-columns:1fr}.hero h1{letter-spacing:.04em}}
 </style></head><body><header><a class="logo" href="#home">ELSEBORN</a><nav><a href="#world">Лор</a><a href="#topics">Топики</a><a href="#applications">Анкеты</a><a href="#donate">Донат</a><button id="login" type="button">Войти через Google</button><button id="logout" class="outline hidden" type="button">Выйти</button><span id="auth-status"></span></nav></header><main><div class="hero" id="home"><div class="hero-inner"><div class="eyebrow">Dark Roleplay · Minecraft RPG</div><h1>ELSEBORN</h1><p>Там, где забытые клятвы обретают силу,<br>начинается твоя история.</p><div class="actions"><a class="btn" href="#world">Исследовать мир</a><a class="btn outline" href="#applications">Создать персонажа</a></div></div></div><section class="content" id="world"><div class="eyebrow">Хроники мира</div><h2>Мир, в котором решаешь ты</h2><div class="cards"><article class="card"><h3>Лор</h3><p>Легенды павших королевств, древние клятвы и тайны мира Elseborn.</p></article><article class="card" id="topics"><h3>Топики</h3><p>Обсуждения и истории сообщества. Форум появится после подключения базы данных.</p></article><article class="card" id="applications"><h3>Анкеты</h3><p>Создай своего героя и отправь анкету на рассмотрение. Раздел в разработке.</p></article></div></section><section class="content" id="donate"><h2>Поддержать Elseborn</h2><p class="note">Магазин и безопасная оплата будут подключены позднее.</p></section></main><footer>© 2026 Elseborn · Dark RP/RPG</footer><script type="module">
 // Заполни параметры после создания проекта Supabase.
-const SUPABASE_URL = '';
-const SUPABASE_ANON_KEY = '';
+const SUPABASE_URL = 'https://mknxnishyfgnltgnmwel.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_aueSLI26Mgk3QSQETaEeSQ_2wiRI7v3';
 const login = document.getElementById('login');
 const logout = document.getElementById('logout');
 const status = document.getElementById('auth-status');
@@ -13,17 +13,18 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   const {createClient} = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   async function updateAuth() {
-    const {data:{user}} = await supabase.auth.getUser();
+    const {data:{user}, error} = await supabase.auth.getUser();
+    if (error && error.name !== 'AuthSessionMissingError') console.warn('Auth:', error.message);
     login.classList.toggle('hidden',!!user);
     logout.classList.toggle('hidden',!user);
     status.textContent = user ? (user.user_metadata?.full_name || user.email || 'Вы вошли') : '';
   }
   login.addEventListener('click', async()=>{
     const {error} = await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
-    if(error) alert(error.message);
+    if(error) alert('Ошибка входа: ' + error.message);
   });
-  logout.addEventListener('click',async()=>{await supabase.auth.signOut();await updateAuth()});
-  supabase.auth.onAuthStateChange(()=>{updateAuth()});
+  logout.addEventListener('click',async()=>{const {error}=await supabase.auth.signOut();if(error){alert('Ошибка выхода: '+error.message);return;}await updateAuth()});
+  supabase.auth.onAuthStateChange(()=>{setTimeout(updateAuth,0)});
   await updateAuth();
 }
 </script></body></html>
