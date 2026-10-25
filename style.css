@@ -21,3 +21,16 @@
 .site-header .nav-auth:hover{background:#48302a;border-color:#bc8d6f}
 @media(max-width:900px){.site-header .navwrap{flex-wrap:wrap;justify-content:center;gap:10px;padding-top:12px;padding-bottom:12px}.site-header .nav-left{flex-wrap:wrap;justify-content:center;gap:8px 22px}.site-header .nav-primary{justify-content:center}.site-header .nav-account{justify-content:center}}
 @media(max-width:480px){.site-header .nav-primary{gap:2px}.site-header .nav-primary a{padding:6px 9px;font-size:12px}.site-header .brand{font-size:22px}}
+
+/* Elseborn navigation layout fix v2: fixed single-row desktop header */
+.site-header .navwrap{width:100%;max-width:1320px;min-height:72px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:30px;row-gap:12px;flex-wrap:nowrap;padding-top:0;padding-bottom:0}
+.site-header .nav-left{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:flex-start;gap:32px;min-width:0}
+.site-header .nav-left .brand{display:block;margin:0;white-space:nowrap;font:normal 25px/1.2 Georgia,serif;letter-spacing:.15em;color:#f3e4d5}
+.site-header .nav-left .nav-primary{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:nowrap;gap:4px;margin:0}
+.site-header .nav-primary a{font:500 13px/1.3 system-ui,Segoe UI,sans-serif;text-decoration:none;padding:9px 12px;border:1px solid transparent;border-radius:3px}
+.site-header .nav-account{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;gap:12px;margin:0}
+.site-header .nav-account .nav-profile,.site-header .nav-account .nav-auth{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 16px;text-decoration:none;font:600 13px/1.3 system-ui,Segoe UI,sans-serif;border-radius:3px;white-space:nowrap}
+.site-header .nav-account .nav-profile{border:1px solid #8e6652;background:#39272380;color:#edc6a3}
+.site-header .nav-account .nav-auth{border:1px solid #765548;background:#24191a;color:#f1e2d5}
+@media(max-width:850px){.site-header .navwrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:13px;padding-bottom:13px}.site-header .nav-left{flex-wrap:wrap;justify-content:center;gap:8px 18px}.site-header .nav-left .nav-primary{flex-wrap:wrap;justify-content:center}.site-header .nav-account{justify-content:center}}
+@media(max-width:480px){.site-header .nav-left .brand{font-size:22px}.site-header .nav-primary a{padding:7px 8px;font-size:12px}}
