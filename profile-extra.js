@@ -1,7 +1,7 @@
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://mknxnishyfgnltgnmwel.supabase.co','sb_publishable_aueSLI26Mgk3QSQETaEeSQ_2wiRI7v3',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
 const $=id=>document.getElementById(id);
-const roleLabels={creator:'Создатель',technical_admin:'Технический администратор',ic_admin:'IC администратор',player:'Игрок'};
+const roleLabels={owner:'Создатель',creator:'Создатель',tech_admin:'Технический администратор',technical_admin:'Технический администратор',ic_admin:'IC администратор',player:'Игрок'};
 let activeUser=null;
 function setMessage(text,ok=false){const e=$('appearance-message');e.textContent=text;e.className=ok?'notice success':'notice'}
 function showAvatar(url){const el=$('profile-avatar');if(!el)return;el.style.backgroundImage=url?`url(${JSON.stringify(url)})`:'';el.textContent=url?'':(activeUser?.user_metadata?.display_name||'И')[0].toUpperCase()}
