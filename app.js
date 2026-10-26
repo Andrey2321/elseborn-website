@@ -56,16 +56,16 @@ function showAuth(isRegister=false){
  register=isRegister;
  $('auth-modal').classList.remove('hidden');
  $('signup-fields').classList.toggle('hidden',!register);
- $('auth-register-extra').classList.toggle('hidden',!register);
+ $('auth-register-extra')?.classList.toggle('hidden',!register);
  $('auth-title').textContent=register?'Создать аккаунт Elseborn':'Войти в Elseborn';
  $('auth-submit').textContent=register?'Зарегистрироваться':'Войти';
  $('auth-switch').textContent=register?'Есть аккаунт? Войти':'Нет аккаунта? Зарегистрироваться';
  $('signup-nick').required=register;
- $('auth-password-confirm').required=register;
- $('auth-consent').required=register;
+ if($('auth-password-confirm'))$('auth-password-confirm').required=register;
+ if($('auth-consent'))$('auth-consent').required=register;
  $('auth-email').placeholder=register?'you@example.com':'Почта или Minecraft-ник';
  $('auth-identifier-label').textContent=register?'Электронная почта':'Почта или Minecraft-ник';
- $('auth-reset').classList.toggle('hidden',register);
+ $('auth-reset')?.classList.toggle('hidden',register);
  message('auth-message','');
 }
 $('login-btn').onclick=()=>showAuth();
@@ -74,7 +74,7 @@ $('auth-modal').onclick=e=>{if(e.target===$('auth-modal'))$('auth-modal').classL
 $('auth-switch').onclick=()=>showAuth(!register);
 // Existing Google users must set a password BEFORE Google is disabled in Supabase.
 $('google-btn').onclick=async()=>{const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(error)message('auth-message',error.message)};
-$('auth-reset').onclick=async()=>{
+if($('auth-reset'))$('auth-reset').onclick=async()=>{
  const email=$('auth-email').value.trim();
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))return message('auth-message','Укажи электронную почту для восстановления пароля.');
  const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/account-password.html'});
@@ -88,15 +88,15 @@ $('auth-form').onsubmit=async e=>{
   if(!/^[A-Za-z0-9_]{3,16}$/.test(nick))return message('auth-message','Ник: 3–16 латинских букв, цифр или _.');
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(identifier))return message('auth-message','Укажи корректную почту.');
   if(password.length<8)return message('auth-message','Пароль должен быть не короче 8 символов.');
-  if(password!==$('auth-password-confirm').value)return message('auth-message','Пароли не совпадают.');
-  if(!$('auth-consent').checked)return message('auth-message','Необходимо согласие с условиями.');
+  if($('auth-password-confirm')&&password!==$('auth-password-confirm').value)return message('auth-message','Пароли не совпадают.');
+  if($('auth-consent')&&!$('auth-consent').checked)return message('auth-message','Необходимо согласие с условиями.');
   const {data:exists,error:checkError}=await supabase.rpc('elseborn_nickname_available',{candidate:nick});
   if(checkError)return message('auth-message','Сначала выполни ACCOUNT_MIGRATION_v11.sql в Supabase.');
   if(!exists)return message('auth-message','Этот Minecraft-ник уже занят.');
   const {data,error}=await supabase.auth.signUp({email:identifier,password,options:{emailRedirectTo:location.origin+location.pathname,data:{display_name:nick,minecraft_nickname:nick}}});
   if(error)return message('auth-message',error.message);
   if(!data.session)showConfirmation(identifier);
-  else $('auth-modal').classList.add('hidden');
+  else { $('auth-modal').classList.add('hidden'); if($('profile-user')) location.href='profile.html'; }
  }else{
   if(!identifier||!password)return message('auth-message','Введи логин и пароль.');
   if(identifier.includes('@')){
@@ -111,6 +111,7 @@ $('auth-form').onsubmit=async e=>{
    if(sessionError)return message('auth-message','Не удалось создать сессию.');
   }
   $('auth-modal').classList.add('hidden');
+  if($('profile-user')) location.href='profile.html';
  }
 };
 $('logout-btn').onclick=async()=>{await supabase.auth.signOut();location.href='index.html'};
