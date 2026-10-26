@@ -1,0 +1,7 @@
+// Independent visible achievements preview; uses existing Supabase singleton.
+import {supabase as db} from './supabase-client.js';
+const medals=[['Страж',1,'🛡'],['Путник',3,'🧭'],['Искатель',6,'⚔'],['Хранитель',12,'♜'],['Легенда',24,'♛']];
+const fullMonths=(start)=>{const a=new Date(start),b=new Date();if(Number.isNaN(+a))return 0;let m=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();if(b.getDate()<a.getDate())m--;return Math.max(0,m)};
+async function renderPreview(){const el=document.getElementById('eb-achievement-preview');if(!el)return;try{const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user){el.textContent='Войди, чтобы увидеть свои достижения.';return}const {data,error}=await db.from('profiles').select('created_at').eq('id',user.id).maybeSingle();if(error)throw error;const months=fullMonths(data?.created_at||user.created_at);el.innerHTML=medals.map(([name,required,icon],i)=>`<div class="eb-preview-medal ${months<required?'locked':''}"><div class="medal-icon">${icon}</div><strong>${name}</strong><small>${required} мес. · ${months>=required?'Получено':'Закрыто'}</small></div>`).join('')}catch(e){el.textContent='Не удалось получить дату регистрации: '+e.message}}
+document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>document.querySelector(`.eb-tabs [data-tab="${button.dataset.openTab}"]`)?.click()));
+renderPreview();db.auth.onAuthStateChange(()=>setTimeout(renderPreview,0));

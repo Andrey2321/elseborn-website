@@ -1,0 +1,42 @@
+/* Elseborn v8: actual profile layout, not a mockup */
+:root{--eb-accent:#dba26b;--eb-border:#6b4937;--eb-panel:#191114}
+body{background:radial-gradient(ellipse at 50% 0%,#33201c 0%,#100c10 48%,#0b090c 100%);min-height:100vh}
+.eb-profile-container{max-width:1540px;margin:0 auto;padding:42px clamp(18px,4vw,64px) 90px}
+.eb-profile-layout{grid-template-columns:310px minmax(0,1fr);gap:22px;max-width:none}
+.eb-sidebar{border:1px solid #795339!important;border-radius:10px!important;padding:28px 20px!important;background:linear-gradient(165deg,#241817,#100c0f 76%)!important;box-shadow:0 16px 60px #0008;overflow:hidden}
+.eb-side-eyebrow{color:#cda076;font-size:10px;letter-spacing:.25em;margin-bottom:22px}
+.eb-sidebar .eb-avatar{width:152px;height:152px;border:3px solid #c28b55;box-shadow:0 0 0 8px #130d11,0 12px 35px #0009}
+.eb-avatar-hint{display:block;cursor:pointer;text-transform:none;letter-spacing:0;color:#cf9c6b;margin:8px auto 2px;font-size:11px}
+.eb-sidebar h2{font:40px Georgia,serif;margin:12px 0 5px}
+.eb-sidebar #profile-role{display:inline-flex;align-items:center;gap:6px;justify-content:center;max-width:100%;border-radius:5px;padding:6px 15px;background:linear-gradient(90deg,#51321f,#986333,#51321f)}
+.eb-side-subtitle{font-size:12px;color:#a99790;margin-top:10px}
+.eb-sidebar .eb-metrics{margin:24px 0 20px;padding:20px 0}
+.eb-sidebar .eb-detail{background:linear-gradient(100deg,#211619,#120e12);border-color:#43302b;padding:13px;margin-bottom:10px}
+.eb-sidebar .eb-detail span:first-child{font-size:10px;letter-spacing:.12em}
+.eb-side-footnote{margin-top:22px;font:italic 12px Georgia,serif;color:#977a66}
+.eb-main{min-width:0}.eb-main .eb-cover{height:300px;border:1px solid #ad764d;border-radius:9px;overflow:hidden;background-position:center;background-size:cover;box-shadow:0 16px 45px #0009;isolation:isolate}
+.eb-cover-gradient{position:absolute;inset:0;background:linear-gradient(90deg,#160b10aa,transparent 70%),linear-gradient(0deg,#150c12b0,transparent 60%);z-index:0;pointer-events:none}
+.eb-cover-caption{position:absolute;left:36px;bottom:28px;display:flex;flex-direction:column;gap:5px;z-index:1;text-shadow:0 2px 15px #000}
+.eb-cover-caption strong{font:clamp(30px,4vw,54px) Georgia,serif;color:#f6dfc0}
+.eb-cover-caption small{color:#e0c4ac;font-size:13px}
+.eb-cover .cover-label{top:18px;right:20px;z-index:1}
+.eb-cover .eb-cover-edit{z-index:2;right:18px;bottom:20px;padding:11px 16px;background:#160e12d9}
+.eb-tabs{border:1px solid #684735;border-radius:7px;overflow-x:auto;box-shadow:0 8px 30px #0006;margin:20px 0 22px}
+.eb-tabs button{font:15px Georgia,serif;padding:19px 11px;background:linear-gradient(#1b1317,#110e12)}
+.eb-tabs button.active{color:#fbe0b9;background:linear-gradient(#583522,#251719);border-bottom-color:#e0a45e}
+.eb-card{border:1px solid #79513b;border-radius:8px;background:linear-gradient(130deg,#26191b,#130f13);padding:30px 36px;box-shadow:0 10px 28px #0005}
+.eb-card h2{font:clamp(26px,2.5vw,36px) Georgia,serif;color:#f1d6b2}
+.eb-about{min-height:240px;background:linear-gradient(90deg,#251719 15%,#251719ee 45%,#1b1016a0 100%),url('assets/lore-art.png') right center/auto 130% no-repeat}
+.eb-about p{max-width:630px;line-height:1.85;font-size:15px}
+.eb-progress-card{background:linear-gradient(110deg,#261a1b,#151014)}
+.eb-section-title{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:16px}
+.eb-section-title h2{margin:5px 0}.eb-inline-link{background:transparent;border:1px solid #78523b;color:#e9b98b;white-space:nowrap}
+.eb-achievement-preview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.eb-preview-medal{background:#191115;border:1px solid #79543d;border-radius:7px;text-align:center;padding:15px 7px;min-width:0}
+.eb-preview-medal.locked{opacity:.52}.eb-preview-medal .medal-icon{font-size:27px}.eb-preview-medal strong{display:block;color:#efc79d;font:17px Georgia,serif;margin:5px 0}.eb-preview-medal small{display:block;color:#a9968b;font-size:11px}
+.eb-setting-grid>div{background:#191114;border:1px solid #694633;border-radius:7px;padding:21px}
+.eb-setting-grid h3{font:22px Georgia,serif}.eb-setting-grid .eb-side-button{display:inline-block}
+.eb-achievement{min-height:200px;transition:transform .2s,border-color .2s}.eb-achievement:hover{transform:translateY(-3px);border-color:#d9a06c}
+.eb-friend{flex-wrap:wrap}
+@media(max-width:1080px){.eb-profile-layout{grid-template-columns:260px minmax(0,1fr)}.eb-achievement-preview{grid-template-columns:repeat(3,1fr)}.eb-card{padding:24px}.eb-cover-caption{left:22px}}
+@media(max-width:760px){.eb-profile-layout{grid-template-columns:1fr}.eb-sidebar{max-width:none}.eb-main .eb-cover{height:240px}.eb-achievement-preview{grid-template-columns:repeat(2,1fr)}.eb-setting-grid{grid-template-columns:1fr}.eb-profile-container{padding:24px 14px 60px}.eb-cover-caption strong{font-size:35px}}
