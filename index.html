@@ -1,19 +1,59 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Главная — Elseborn</title><link rel="stylesheet" href="style.css?v=elseborn-repair-v2-20261026"></head><body><header class="site-header"><div class="wrap navwrap"><div class="nav-left"><a class="brand" href="index.html">ELSEBORN</a><nav class="nav nav-primary" aria-label="Основная навигация"><a href="lore.html">Лор</a><a href="forum.html">Форум</a><a href="index.html#donate">Донат</a></nav></div><div class="nav-account"><a class="nav-profile" href="profile.html">Профиль</a><button id="login-btn" class="nav-auth">Войти</button><button id="logout-btn" class="secondary hidden nav-auth">Выйти</button><span id="user-label" class="hidden" aria-hidden="true"></span></div></div></header><main><section class="hero"><div><div class="eyebrow">Dark Roleplay · Minecraft RPG</div><div class="elseborn-title-reveal is-awakening"><div class="elseborn-title-smoke" aria-hidden="true"></div><h1>ELSEBORN</h1><div class="elseborn-title-sparks" aria-hidden="true"></div></div><p>Там, где забытые клятвы обретают силу,<br>начинается твоя история.</p><div class="actions"><a class="button" href="lore.html">Исследовать лор</a><a class="button secondary" href="forum-category.html?kind=application">Создать персонажа</a></div></div></section><section class="wrap section"><h2>Открой свой путь</h2><div class="grid"><article class="panel"><h3>Хроники мира</h3><p>Истории королевств, древние клятвы и тайны.</p><a href="lore.html">Читать лор</a></article><article class="panel"><h3>Форум</h3><p>Обсуждай мир и публикуй свои истории.</p><a href="forum.html">Открыть форум</a></article><article class="panel"><h3>Анкеты</h3><p>Представь своего персонажа миру Elseborn.</p><a href="applications.html">Перейти к анкетам</a></article></div></section><section id="donate" class="wrap section"><h2>Поддержать Elseborn</h2><p class="muted">Магазин и оплата будут подключены позже.</p></section></main><footer class="footer">© 2026 Elseborn · Dark RP/RPG</footer><div id="auth-modal" class="modal hidden"><div class="modal-card"><button id="modal-close" class="close" aria-label="Закрыть">×</button><div class="eyebrow" style="text-align:center">Твоя история начинается здесь</div><h2 id="auth-title">Войти в Elseborn</h2><form id="auth-form"><div id="signup-fields" class="hidden"><div class="formrow"><label>Имя</label><input id="signup-name" maxlength="50"></div><div class="formrow"><label>Minecraft nickname</label><input id="signup-nick" maxlength="16" pattern="[A-Za-z0-9_]{3,16}"></div></div><div class="formrow"><label>Электронная почта</label><input id="auth-email" type="email" autocomplete="email" required></div><div class="formrow"><label>Пароль</label><input id="auth-password" type="password" minlength="8" required></div><button id="auth-submit" class="wide">Войти</button></form><button id="google-btn" class="wide secondary">Продолжить через Google</button><button id="auth-switch" class="linklike wide">Нет аккаунта? Зарегистрироваться</button><p id="auth-message" class="notice" aria-live="polite"></p></div></div><script>
-/* Replay entrance reliably, including back-forward cache restores. */
-(function(){
- const selector='.hero .elseborn-title-reveal h1,.hero .elseborn-title-smoke,.hero .elseborn-title-sparks,.hero .eyebrow,.hero .elseborn-title-reveal + p,.hero .actions .button';
- function replay(){
-  const nodes=[...document.querySelectorAll(selector)];
-  nodes.forEach(el=>el.style.animation='none');
-  void document.body.offsetHeight;
-  nodes.forEach(el=>el.style.removeProperty('animation'));
- }
- window.elsebornReplay=replay;
- document.addEventListener('DOMContentLoaded',()=>{
-  replay();
-  const title=document.querySelector('.hero .elseborn-title-reveal h1');
-  if(title){title.title='Нажмите дважды, чтобы повторить появление';title.addEventListener('dblclick',replay);}
- });
- window.addEventListener('pageshow',e=>{if(e.persisted)replay();});
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Главная — Elseborn</title><link rel="stylesheet" href="style.css?v=elseborn-waapi-4"></head><body><header class="site-header"><div class="wrap navwrap"><div class="nav-left"><a class="brand" href="index.html">ELSEBORN</a><nav class="nav nav-primary" aria-label="Основная навигация"><a href="lore.html">Лор</a><a href="forum.html">Форум</a><a href="index.html#donate">Донат</a></nav></div><div class="nav-account"><a class="nav-profile" href="profile.html">Профиль</a><button id="login-btn" class="nav-auth">Войти</button><button id="logout-btn" class="secondary hidden nav-auth">Выйти</button><span id="user-label" class="hidden" aria-hidden="true"></span></div></div></header><main><section class="hero"><div><div class="eyebrow">Dark Roleplay · Minecraft RPG</div><div class="elseborn-title-reveal is-awakening"><div class="elseborn-title-smoke" aria-hidden="true"></div><h1>ELSEBORN</h1><div class="elseborn-title-sparks" aria-hidden="true"></div></div><p>Там, где забытые клятвы обретают силу,<br>начинается твоя история.</p><div class="actions"><a class="button" href="lore.html">Исследовать лор</a><a class="button secondary" href="forum-category.html?kind=application">Создать персонажа</a></div></div></section><section class="wrap section"><h2>Открой свой путь</h2><div class="grid"><article class="panel"><h3>Хроники мира</h3><p>Истории королевств, древние клятвы и тайны.</p><a href="lore.html">Читать лор</a></article><article class="panel"><h3>Форум</h3><p>Обсуждай мир и публикуй свои истории.</p><a href="forum.html">Открыть форум</a></article><article class="panel"><h3>Анкеты</h3><p>Представь своего персонажа миру Elseborn.</p><a href="applications.html">Перейти к анкетам</a></article></div></section><section id="donate" class="wrap section"><h2>Поддержать Elseborn</h2><p class="muted">Магазин и оплата будут подключены позже.</p></section></main><footer class="footer">© 2026 Elseborn · Dark RP/RPG</footer><div id="auth-modal" class="modal hidden"><div class="modal-card"><button id="modal-close" class="close" aria-label="Закрыть">×</button><div class="eyebrow" style="text-align:center">Твоя история начинается здесь</div><h2 id="auth-title">Войти в Elseborn</h2><form id="auth-form"><div id="signup-fields" class="hidden"><div class="formrow"><label>Имя</label><input id="signup-name" maxlength="50"></div><div class="formrow"><label>Minecraft nickname</label><input id="signup-nick" maxlength="16" pattern="[A-Za-z0-9_]{3,16}"></div></div><div class="formrow"><label>Электронная почта</label><input id="auth-email" type="email" autocomplete="email" required></div><div class="formrow"><label>Пароль</label><input id="auth-password" type="password" minlength="8" required></div><button id="auth-submit" class="wide">Войти</button></form><button id="google-btn" class="wide secondary">Продолжить через Google</button><button id="auth-switch" class="linklike wide">Нет аккаунта? Зарегистрироваться</button><p id="auth-message" class="notice" aria-live="polite"></p></div></div><script id="elseborn-entrance-v6">
+/* Elseborn v6: self-contained Web Animations API, independent of CSS keyframes. */
+(function () {
+  'use strict';
+  const version = '6.0';
+  let active = [];
+  const $ = (selector, root=document) => root.querySelector(selector);
+  function play() {
+    const hero = $('.hero');
+    if (!hero || !Element.prototype.animate) return false;
+    active.forEach(a => {try {a.cancel()} catch (_) {}});
+    active = [];
+    const root = $('.elseborn-title-reveal', hero);
+    if (!root) return false;
+    const title = $('h1', root);
+    const smoke = $('.elseborn-title-smoke', root);
+    const sparks = $('.elseborn-title-sparks', root);
+    const eyebrow = $('.eyebrow', hero);
+    const tagline = $('.elseborn-title-reveal + p', hero);
+    const buttons = [...hero.querySelectorAll('.actions .button')];
+    // CSS keyframes and old reduced-motion overrides cannot disable Web Animations.
+    [title, eyebrow, tagline, ...buttons, smoke, sparks].filter(Boolean).forEach(el => {
+      el.style.setProperty('animation', 'none', 'important');
+    });
+    if (root) {root.style.position='relative';root.style.isolation='isolate';}
+    if (smoke) {
+      Object.assign(smoke.style,{position:'absolute',pointerEvents:'none',zIndex:'1',inset:'-65% -20%',background:'radial-gradient(ellipse, rgba(153,55,48,.42) 0%, rgba(125,60,62,.20) 42%, transparent 73%)',filter:'blur(22px)'});
+    }
+    if (sparks) {
+      Object.assign(sparks.style,{position:'absolute',pointerEvents:'none',zIndex:'3',inset:'-25% -12%',background:'radial-gradient(circle at 15% 35%, #e9b49b 0 2px, transparent 3px), radial-gradient(circle at 85% 60%, #b96a57 0 2px, transparent 3px), radial-gradient(circle at 55% 10%, #efc7a8 0 1px, transparent 3px)'});
+    }
+    if (title) {title.style.position='relative';title.style.zIndex='2';}
+    const run=(el,frames,duration,delay=0)=>{
+      if(!el)return;
+      try {active.push(el.animate(frames,{duration,delay,easing:'cubic-bezier(.2,.65,.2,1)',fill:'both'}));}
+      catch(err){console.warn('Elseborn animation element failed:',err);}
+    };
+    const fade=[{opacity:0,filter:'blur(12px)',transform:'translateY(22px)'},{opacity:1,filter:'blur(0px)',transform:'translateY(0px)'}];
+    run(eyebrow,fade,1100,80);
+    run(title,[
+      {opacity:0,filter:'blur(28px)',transform:'translateY(26px) scale(1.14)',textShadow:'0 0 65px rgba(166,55,45,.6)'},
+      {opacity:.62,filter:'blur(9px)',transform:'translateY(7px) scale(1.045)',textShadow:'0 0 26px rgba(166,55,45,.3)',offset:.5},
+      {opacity:1,filter:'blur(0px)',transform:'translateY(0px) scale(1)',textShadow:'0 0 0px transparent'}
+    ],3200,250);
+    run(smoke,[{opacity:0,transform:'scale(.55)'},{opacity:.75,transform:'scale(1.04)',offset:.4},{opacity:0,transform:'scale(1.55)'}],3300,200);
+    run(sparks,[{opacity:0,transform:'translateY(18px)'},{opacity:.65,transform:'translateY(0)',offset:.48},{opacity:0,transform:'translateY(-28px)'}],3000,450);
+    run(tagline,fade,1400,1350);
+    buttons.forEach((button,i)=>run(button,fade,1050,1950+i*250));
+    document.documentElement.dataset.elsebornAnimation = version;
+    return true;
+  }
+  window.elsebornReplay=play;
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',play,{once:true});
+  else play();
+  window.addEventListener('pageshow',e=>{if(e.persisted)play()});
+  document.addEventListener('dblclick',e=>{if(e.target.closest('.hero .elseborn-title-reveal'))play()});
+  console.info('Elseborn cinematic entrance v'+version+' loaded');
 })();
 </script><script type="module" src="app.js"></script></body></html>
