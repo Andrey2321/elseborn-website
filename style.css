@@ -53,3 +53,6 @@
 @keyframes ebMist {0%{opacity:0;transform:scale(.4)}30%{opacity:1}75%{opacity:.7}100%{opacity:0;transform:scale(1.8)}}
 @keyframes ebEmbers {0%,25%{opacity:0;transform:translateY(12px)}50%{opacity:1}100%{opacity:0;transform:translateY(-40px)}}
 @media(prefers-reduced-motion:reduce){.hero .elseborn-title-reveal.is-awakening h1,.hero .elseborn-title-reveal.is-awakening .elseborn-title-smoke,.hero .elseborn-title-reveal.is-awakening .elseborn-title-sparks{animation:none!important}}
+
+/* JS controls the title reveal; do not apply competing CSS keyframe animations. */
+.hero .elseborn-title-reveal h1,.hero .elseborn-title-reveal .elseborn-title-smoke,.hero .elseborn-title-reveal .elseborn-title-sparks{animation:none!important}
