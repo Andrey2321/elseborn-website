@@ -2,9 +2,57 @@ import {supabase} from './supabase-client.js';
 import DOMPurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.2.6/+esm';
 const $=id=>document.getElementById(id);let user=null,register=false;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Elseborn: email confirmation by the 8-digit code from Supabase.
+const pendingEmailKey='elseborn_pending_confirmation_email';
+let confirmationEmail='';
+function ensureConfirmationUI(){
+ if(document.getElementById('email-code-panel'))return;
+ const panel=document.createElement('section');
+ panel.id='email-code-panel';panel.className='hidden';
+ panel.innerHTML=`<div class="eb-code-eyebrow">ПОСЛЕДНИЙ ШАГ ПЕРЕД ПУТЕШЕСТВИЕМ</div>
+ <h2>Подтверждение почты</h2><p class="eb-code-description">Мы отправили восьмизначный код на <strong id="eb-code-email"></strong>. Введи его ниже.</p>
+ <form id="eb-code-form"><label for="eb-code-input">Код из письма</label><input id="eb-code-input" type="text" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" autocomplete="one-time-code" placeholder="00000000" required aria-label="Восьмизначный код подтверждения"><button id="eb-code-submit" class="wide" type="submit">Подтвердить аккаунт</button></form>
+ <button id="eb-code-resend" type="button" class="linklike wide">Отправить код повторно</button><button id="eb-code-back" type="button" class="linklike wide">Вернуться ко входу</button><p id="eb-code-message" class="notice" aria-live="polite"></p>`;
+ const card=document.querySelector('#auth-modal .modal-card');
+ card.append(panel);
+ const input=document.getElementById('eb-code-input');
+ input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(0,8)});
+ document.getElementById('eb-code-back').onclick=()=>{localStorage.removeItem(pendingEmailKey);showAuth(false)};
+ document.getElementById('eb-code-form').onsubmit=async event=>{
+  event.preventDefault();const token=input.value.trim();
+  if(!/^[0-9]{8}$/.test(token))return message('eb-code-message','Введи все 8 цифр из письма.');
+  const btn=document.getElementById('eb-code-submit');btn.disabled=true;message('eb-code-message','Проверяем код...');
+  try{
+   const {error}=await supabase.auth.verifyOtp({email:confirmationEmail,token,type:'signup'});
+   if(error){message('eb-code-message','Не удалось подтвердить код: '+error.message);return}
+   localStorage.removeItem(pendingEmailKey);confirmationEmail='';
+   message('eb-code-message','Почта подтверждена! Аккаунт активирован.',true);
+   setTimeout(()=>{document.getElementById('auth-modal').classList.add('hidden');location.href='profile.html'},900);
+  }catch(err){message('eb-code-message','Ошибка подключения: '+err.message)}finally{btn.disabled=false}
+ };
+ document.getElementById('eb-code-resend').onclick=async()=>{
+  const btn=document.getElementById('eb-code-resend');btn.disabled=true;message('eb-code-message','Отправляем новый код...');
+  try{const {error}=await supabase.auth.resend({type:'signup',email:confirmationEmail});message('eb-code-message',error?'Не удалось отправить: '+error.message:'Новый код отправлен. Проверь почту.',!error)}
+  catch(err){message('eb-code-message','Ошибка отправки: '+err.message)}finally{setTimeout(()=>{btn.disabled=false},60000)}
+ };
+}
+function showConfirmation(email){
+ ensureConfirmationUI();confirmationEmail=email;localStorage.setItem(pendingEmailKey,email);
+ document.getElementById('auth-modal').classList.remove('hidden');
+ document.querySelectorAll('#auth-modal .modal-card > :not(#email-code-panel):not(#modal-close)').forEach(el=>el.classList.add('hidden'));
+ document.getElementById('email-code-panel').classList.remove('hidden');
+ document.getElementById('eb-code-email').textContent=email;
+ document.getElementById('eb-code-input').value='';message('eb-code-message','');
+ document.getElementById('eb-code-input').focus();
+}
+function hideConfirmation(){
+ const panel=document.getElementById('email-code-panel');if(panel)panel.classList.add('hidden');
+ document.querySelectorAll('#auth-modal .modal-card > :not(#email-code-panel):not(#modal-close)').forEach(el=>el.classList.remove('hidden'));
+}
 const safe=html=>DOMPurify.sanitize(html,{ALLOWED_TAGS:['p','div','br','b','strong','i','em','u','h2','h3','ul','ol','li','blockquote','a','img'],ALLOWED_ATTR:['href','src','alt','title','target','rel'],ALLOWED_URI_REGEXP:/^(?:(?:https?:|mailto:)|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i});
 const message=(id,t,ok=false)=>{if($(id)){$(id).textContent=t;$(id).className=ok?'notice success':'notice'}};
 function showAuth(isRegister=false){
+ hideConfirmation();
  register=isRegister;
  $('auth-modal').classList.remove('hidden');
  $('signup-fields').classList.toggle('hidden',!register);
@@ -47,7 +95,7 @@ $('auth-form').onsubmit=async e=>{
   if(!exists)return message('auth-message','Этот Minecraft-ник уже занят.');
   const {data,error}=await supabase.auth.signUp({email:identifier,password,options:{emailRedirectTo:location.origin+location.pathname,data:{display_name:nick,minecraft_nickname:nick}}});
   if(error)return message('auth-message',error.message);
-  if(!data.session)message('auth-message','Проверь почту и подтверди регистрацию.',true);
+  if(!data.session)showConfirmation(identifier);
   else $('auth-modal').classList.add('hidden');
  }else{
   if(!identifier||!password)return message('auth-message','Введи логин и пароль.');
@@ -67,8 +115,8 @@ $('auth-form').onsubmit=async e=>{
 };
 $('logout-btn').onclick=async()=>{await supabase.auth.signOut();location.href='index.html'};
 function updateAuth(u){user=u;$('login-btn').classList.toggle('hidden',!!u);$('logout-btn').classList.toggle('hidden',!u);$('user-label').textContent=u?(u.user_metadata?.display_name||u.email||'Игрок'):'';if($('profile-user'))renderProfile()}
-supabase.auth.onAuthStateChange((event,session)=>{updateAuth(session?.user||null);if(event==='SIGNED_IN')$('auth-modal').classList.add('hidden')});
-const {data:{session},error:sessionError}=await supabase.auth.getSession();updateAuth(session?.user||null);if(sessionError)message('auth-message',sessionError.message);
+supabase.auth.onAuthStateChange((event,session)=>{updateAuth(session?.user||null);if(event==='SIGNED_IN'){localStorage.removeItem(pendingEmailKey);$('auth-modal').classList.add('hidden')}});
+const {data:{session},error:sessionError}=await supabase.auth.getSession();updateAuth(session?.user||null);if(sessionError)message('auth-message',sessionError.message);if(!session?.user){const pending=localStorage.getItem(pendingEmailKey);if(pending&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(pending))showConfirmation(pending)}
 const params=new URLSearchParams(location.search);if(params.has('error')){showAuth();message('auth-message',params.get('error_description')||params.get('error'))}
 const FORUM_SECTIONS={topic:['Топики','Ролевые истории, события и хроники игроков'],application:['Анкеты','Заявки на создание персонажей'],rules:['Правила','Законы и правила проекта'],professions:['Профессии','Ремёсла, занятия и пути развития'],races:['Расы','Народы и происхождение персонажей'],guide:['Справочник','Энциклопедия, инструкции и гайды']};
 const adminKinds=new Set(['rules','professions','races','guide']);

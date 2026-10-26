@@ -56,3 +56,6 @@
 
 /* JS controls the title reveal; do not apply competing CSS keyframe animations. */
 .hero .elseborn-title-reveal h1,.hero .elseborn-title-reveal .elseborn-title-smoke,.hero .elseborn-title-reveal .elseborn-title-sparks{animation:none!important}
+
+/* Email OTP confirmation */
+#email-code-panel{text-align:center;padding:8px 0 0}#email-code-panel.hidden{display:none!important}#email-code-panel h2{margin:18px 0;color:#f1d6b0}#email-code-panel .eb-code-eyebrow{font-size:10px;letter-spacing:2px;color:#dba66b}#email-code-panel .eb-code-description{line-height:1.6;color:#d5bdaf;overflow-wrap:anywhere}#eb-code-form label{display:block;text-align:left;margin:20px 0 8px;color:#dba66b}#eb-code-input{width:100%;box-sizing:border-box;text-align:center;font-size:28px;letter-spacing:5px;font-weight:700;color:#f3b66c;background:#120f13;border:1px solid #a46d48;padding:14px 8px;border-radius:6px}#eb-code-submit{margin-top:18px}#eb-code-resend,#eb-code-back{margin-top:12px}#eb-code-message{overflow-wrap:anywhere}
