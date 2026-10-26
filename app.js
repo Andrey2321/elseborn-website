@@ -1,6 +1,5 @@
-import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import {supabase} from './supabase-client.js';
 import DOMPurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.2.6/+esm';
-const supabase=createClient('https://mknxnishyfgnltgnmwel.supabase.co','sb_publishable_aueSLI26Mgk3QSQETaEeSQ_2wiRI7v3',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
 const $=id=>document.getElementById(id);let user=null,register=false;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safe=html=>DOMPurify.sanitize(html,{ALLOWED_TAGS:['p','div','br','b','strong','i','em','u','h2','h3','ul','ol','li','blockquote','a','img'],ALLOWED_ATTR:['href','src','alt','title','target','rel'],ALLOWED_URI_REGEXP:/^(?:(?:https?:|mailto:)|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i});

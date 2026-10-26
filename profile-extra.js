@@ -1,5 +1,4 @@
-import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const db=createClient('https://mknxnishyfgnltgnmwel.supabase.co','sb_publishable_aueSLI26Mgk3QSQETaEeSQ_2wiRI7v3',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+import {supabase as db} from './supabase-client.js';
 const $=id=>document.getElementById(id);
 const roleLabels={owner:'Создатель',creator:'Создатель',tech_admin:'Технический администратор',technical_admin:'Технический администратор',ic_admin:'IC администратор',player:'Игрок'};
 let activeUser=null;
