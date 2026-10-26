@@ -39,12 +39,17 @@
 .forum-hero{padding:75px 20px 65px;background:radial-gradient(ellipse at 50% 0%,#6c3d3755,transparent 70%),linear-gradient(145deg,#261719,#110e12)}
 .forum-intro{max-width:700px;margin:0 0 28px}.forum-intro h2{margin:8px 0}.forum-intro p{margin:0}.forum-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.forum-card{min-height:118px;display:flex;align-items:center;gap:22px;padding:22px 25px;text-decoration:none;background:linear-gradient(120deg,#251a1b,#171216);border:1px solid #62473c;border-radius:3px;transition:background .2s,border-color .2s,transform .2s}.forum-card:hover{background:#332122;border-color:#b3876a;transform:translateY(-2px)}.forum-symbol{font:24px Georgia,serif;color:#bc9477;min-width:43px}.forum-card strong{display:block;font:26px Georgia,serif;color:#f0d4b6;font-weight:normal}.forum-card small{display:block;color:#b8a7a0;font-size:13px;margin-top:5px}.forum-chevron{margin-left:auto;color:#b99278;font-size:29px}.forum-back{color:#e2b994;text-decoration:none}.forum-list-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.forum-list-heading h2{margin:16px 0}.forum-list-heading button{font-size:13px}@media(max-width:680px){.forum-grid{grid-template-columns:1fr}.forum-card{min-height:100px;padding:17px}.forum-card strong{font-size:23px}}
 
-/* ELSEBORN: портал и дым при каждой загрузке главной страницы. */
-.hero .elseborn-title-reveal{position:relative;display:inline-block;isolation:isolate;max-width:100%;}
-.hero .elseborn-title-reveal h1{position:relative;z-index:2;animation:elsebornPortalTitle 2.8s cubic-bezier(.16,.72,.22,1) both;transform-origin:center;}
-.hero .elseborn-title-smoke{position:absolute;z-index:1;pointer-events:none;inset:-35% -18%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(190,111,94,.32),rgba(91,41,47,.20) 42%,transparent 72%);filter:blur(23px);animation:elsebornPortalMist 3.4s ease-out both;}
-.hero .elseborn-title-sparks{position:absolute;z-index:3;pointer-events:none;inset:-18% -6%;background:radial-gradient(circle at 16% 68%,#e8b49c 0 1px,transparent 2px),radial-gradient(circle at 82% 28%,#c77d6a 0 1px,transparent 2px),radial-gradient(circle at 53% 88%,#d9aa8e 0 1px,transparent 2px);animation:elsebornPortalEmbers 3s ease-out both;}
-@keyframes elsebornPortalTitle{0%{opacity:0;filter:blur(24px);transform:translateY(22px) scale(1.12);text-shadow:0 0 50px rgba(165,64,55,.6)}45%{opacity:.65;filter:blur(8px);transform:translateY(5px) scale(1.03)}80%{opacity:1;filter:blur(1px)}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1);text-shadow:none}}
-@keyframes elsebornPortalMist{0%{opacity:0;transform:scale(.45)}28%{opacity:.95}100%{opacity:0;transform:scale(1.65)}}
-@keyframes elsebornPortalEmbers{0%,12%{opacity:0;transform:translateY(14px)}44%{opacity:.8}100%{opacity:0;transform:translateY(-28px)}}
-@media(prefers-reduced-motion:reduce){.hero .elseborn-title-reveal h1,.hero .elseborn-title-smoke,.hero .elseborn-title-sparks{animation:none!important}.hero .elseborn-title-smoke,.hero .elseborn-title-sparks{display:none}}
+
+/* ELSEBORN home entrance: intentionally scoped to the main title. */
+.hero .elseborn-title-reveal {position:relative;display:inline-block;isolation:isolate;max-width:100%;}
+.hero .elseborn-title-reveal h1 {position:relative;z-index:2;}
+.hero .elseborn-title-smoke,.hero .elseborn-title-sparks {pointer-events:none;position:absolute;}
+.hero .elseborn-title-smoke {z-index:1;inset:-60% -24%;background:radial-gradient(ellipse at center,rgba(177,79,66,.45) 0%,rgba(121,55,60,.2) 36%,transparent 72%);filter:blur(22px);opacity:0;}
+.hero .elseborn-title-sparks {z-index:3;inset:-20% -10%;opacity:0;background:radial-gradient(circle at 10% 40%,#efb8a0 0 2px,transparent 3px),radial-gradient(circle at 85% 25%,#cf7662 0 2px,transparent 3px),radial-gradient(circle at 70% 80%,#f1c5a3 0 1px,transparent 3px);}
+.hero .elseborn-title-reveal.is-awakening h1 {animation:ebTitleRise 4.2s cubic-bezier(.16,.72,.18,1) both !important;}
+.hero .elseborn-title-reveal.is-awakening .elseborn-title-smoke {animation:ebMist 4.6s ease-out both !important;}
+.hero .elseborn-title-reveal.is-awakening .elseborn-title-sparks {animation:ebEmbers 4.2s ease-out both !important;}
+@keyframes ebTitleRise {0%{opacity:0;filter:blur(34px);transform:translateY(32px) scale(1.18);text-shadow:0 0 70px #a33e32}32%{opacity:.28;filter:blur(19px)}63%{opacity:.85;filter:blur(5px);transform:translateY(5px) scale(1.03)}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1);text-shadow:none}}
+@keyframes ebMist {0%{opacity:0;transform:scale(.4)}30%{opacity:1}75%{opacity:.7}100%{opacity:0;transform:scale(1.8)}}
+@keyframes ebEmbers {0%,25%{opacity:0;transform:translateY(12px)}50%{opacity:1}100%{opacity:0;transform:translateY(-40px)}}
+@media(prefers-reduced-motion:reduce){.hero .elseborn-title-reveal.is-awakening h1,.hero .elseborn-title-reveal.is-awakening .elseborn-title-smoke,.hero .elseborn-title-reveal.is-awakening .elseborn-title-sparks{animation:none!important}}
