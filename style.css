@@ -48,3 +48,38 @@
 @keyframes elseborn-smoke{0%{opacity:0;transform:scale(.55) translateY(25px)}32%{opacity:.85}100%{opacity:0;transform:scale(1.45) translateY(-18px)}}
 @keyframes elseborn-embers{0%,18%{opacity:0;transform:translateY(20px)}45%{opacity:.75}100%{opacity:0;transform:translateY(-36px)}}
 @media(prefers-reduced-motion:reduce){.hero .elseborn-title-reveal h1,.hero .elseborn-title-smoke,.hero .elseborn-title-sparks{animation:none!important}.hero .elseborn-title-smoke,.hero .elseborn-title-sparks{display:none}}
+/* ELSEBORN — появление названия */
+
+.elseborn-title-reveal h1 {
+  animation: elsebornAwakening 2.8s ease-out both;
+  will-change: opacity, filter, transform;
+}
+
+@keyframes elsebornAwakening {
+  0% {
+    opacity: 0;
+    filter: blur(25px);
+    transform: scale(1.2) translateY(25px);
+    text-shadow: 0 0 70px #a43125;
+  }
+
+  50% {
+    opacity: 0.6;
+    filter: blur(7px);
+    transform: scale(1.05) translateY(5px);
+    text-shadow: 0 0 35px #a43125;
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1) translateY(0);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elseborn-title-reveal h1 {
+    animation: none;
+  }
+}
