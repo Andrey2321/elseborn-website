@@ -1,0 +1,11 @@
+import {supabase as db} from './supabase-client.js';
+const id=new URLSearchParams(location.search).get('id');
+const el=document.getElementById('public-about-text');
+if(el&&/^[0-9a-f-]{36}$/i.test(id||'')){
+ const host=document.createElement('div');host.className='eb-card';host.innerHTML='<h2>Достижения и друзья</h2><div id="social-age"></div><div id="social-friend"></div>';document.getElementById('public-profile-card')?.append(host);
+ const {data:p,error}=await db.from('profiles').select('bio,created_at').eq('id',id).maybeSingle();
+ if(!error&&p){el.textContent=p.bio||'Пользователь ещё не добавил описание.';const months=(new Date().getFullYear()-new Date(p.created_at).getFullYear())*12+new Date().getMonth()-new Date(p.created_at).getMonth()-(new Date().getDate()<new Date(p.created_at).getDate()?1:0);const levels=[['Страж',1],['Путник',3],['Искатель',6],['Хранитель',12],['Легенда Elseborn',24]];document.getElementById('social-age').textContent='Регистрация: '+new Date(p.created_at).toLocaleDateString('ru-RU')+' · '+levels.filter(x=>months>=x[1]).map(x=>x[0]).join(' · ');}
+ const {data:{session}}=await db.auth.getSession();const me=session?.user?.id;
+ const box=document.getElementById('social-friend');
+ if(me&&me!==id){const b=document.createElement('button');box.append(b);async function refresh(){const {data,error}=await db.from('friend_requests').select('id,status,sender_id,receiver_id').or(`and(sender_id.eq.${me},receiver_id.eq.${id}),and(sender_id.eq.${id},receiver_id.eq.${me})`).limit(10);if(error){b.textContent='Друзья недоступны';b.disabled=true;return}const r=(data||[]).find(x=>x.status==='accepted')||(data||[]).find(x=>x.status==='pending');if(!r){b.textContent='Добавить в друзья';b.onclick=async()=>{b.disabled=true;const res=await db.from('friend_requests').insert({sender_id:me,receiver_id:id});if(res.error)alert(res.error.message);b.disabled=false;refresh()};return}if(r.status==='accepted'){b.textContent='✓ Уже в друзьях';b.disabled=true;return}if(r.sender_id===me){b.textContent='Заявка отправлена';b.disabled=true;return}b.textContent='Принять приглашение';b.onclick=async()=>{b.disabled=true;const res=await db.from('friend_requests').update({status:'accepted'}).eq('id',r.id);if(res.error)alert(res.error.message);refresh()}}refresh()}
+}
