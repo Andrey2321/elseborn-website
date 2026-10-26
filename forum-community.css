@@ -1,0 +1,14 @@
+\n/* ELSEBORN FORUM V5 */
+.forum-entry{display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;padding:0!important;overflow:hidden;margin:16px 0;transition:border-color .2s,transform .2s}
+.forum-entry:hover{border-color:#c29372;transform:translateY(-2px)}
+.forum-entry-author{background:linear-gradient(145deg,#342324,#1b151a);border-right:1px solid #604238;padding:23px 17px}
+.forum-person{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.forum-person-avatar{height:60px;width:60px;min-width:60px;border-radius:50%;background:#49312c;border:2px solid #98735b;display:grid;place-items:center;overflow:hidden;color:#efcfad;font:29px Georgia,serif}
+.forum-person-avatar img{width:100%;height:100%;object-fit:cover}
+.forum-person-info{min-width:0}.forum-person-info strong{display:block;font:21px Georgia,serif;color:#f1d1ac;overflow-wrap:anywhere}.forum-person-info small{display:inline-block;margin-top:4px;color:#d4ac85;font-size:12px}
+.forum-entry-body{padding:24px 27px;min-width:0}.forum-entry-kicker{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#bca49b}.forum-entry-body h3{font:29px Georgia,serif;margin:12px 0}.forum-entry-body h3 a{text-decoration:none;color:#f2d4b4}.forum-entry-open{font-size:13px;color:#cfa57f}
+.forum-post-author{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #63473b;padding-bottom:20px;margin-bottom:24px}
+.forum-comments{margin-top:25px}.forum-comments-head h2{font:32px Georgia,serif;color:#e6c5a2;margin:0}.forum-comments-head p{margin:0 0 22px}
+.forum-comment{padding:22px 0;border-top:1px solid #594037;display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px}.forum-comment-content{overflow-wrap:anywhere}.forum-comment-content time{font-size:12px;color:#aa958b}.forum-comment-content p{white-space:normal;line-height:1.75}.forum-comment-delete{background:transparent;color:#d8ad97;border:0;padding:3px 0;font-size:12px}
+#forum-comment-form{border-top:1px solid #594037;padding-top:23px;margin-top:15px}#forum-comment-body{min-height:100px;margin-bottom:12px}
+@media(max-width:680px){.forum-entry{grid-template-columns:1fr}.forum-entry-author{border-right:0;border-bottom:1px solid #604238;padding:15px}.forum-entry-body{padding:18px}.forum-comment{grid-template-columns:1fr;gap:10px}.forum-person-avatar{width:50px;height:50px;min-width:50px}}
