@@ -2,3 +2,45 @@
 .brand{display:inline-flex;align-items:center;gap:11px}.brand-emblem{width:34px;height:34px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 9px #dc85665c)}
 .community-hero{background:radial-gradient(ellipse at 50% 5%,#6a3e3655,transparent 70%),linear-gradient(155deg,#2a191d,#100d12)}
 .directory-controls{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:25px}.directory-search-label{flex:1;max-width:440px}.directory-search-label input{margin-top:8px}.directory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}.directory-card{display:block;overflow:hidden;text-decoration:none;background:#21191b;border:1px solid #62473c;border-radius:6px;transition:transform .2s,border-color .2s}.directory-card:hover{transform:translateY(-4px);border-color:#d7a17c}.directory-banner{height:100px;background:linear-gradient(120deg,#54302d,#21191b);background-position:center;background-size:cover}.directory-content{padding:0 18px 20px}.directory-avatar,.public-avatar{background:#4c302c center/cover;display:grid;place-items:center;border-radius:50%;color:#f8dfca;font:38px Georgia,serif;overflow:hidden}.directory-avatar{height:78px;width:78px;border:4px solid #21191b;margin-top:-36px;position:relative}.directory-name{font:25px Georgia,serif;margin:10px 0 3px;color:#f0d6b7;overflow-wrap:anywhere}.directory-nick{font-size:13px;color:#baa9a1}.community-role{display:inline-flex;align-items:center;border:1px solid #7b5846;border-radius:20px;padding:3px 10px;color:#e7c5a4;font-size:12px}.community-role.owner{border-color:#d9a55e;color:#f9d79a}.community-role.tech{border-color:#91a3c4;color:#bdccec}.community-role.ic{border-color:#a98fc8;color:#d6c0f3}.community-presence{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#a9a09c}.community-presence:before{content:"";width:8px;height:8px;border-radius:50%;background:#777}.community-presence.online:before{background:#78d8a3;box-shadow:0 0 9px #78d8a388}.directory-meta,.public-facts{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:13px}.directory-stars{margin-top:12px;color:#e6b780;font-size:14px}.public-cover{height:260px;border:1px solid #70503d;border-radius:6px 6px 0 0;background:linear-gradient(0deg,#1b1016bb,#3e1a1c55),url('assets/hero.png') center/cover;position:relative}.public-identity{display:flex;gap:25px;align-items:center;margin:-55px 28px 25px;position:relative}.public-avatar{height:120px;width:120px;border:5px solid #171015;flex:none}.public-identity h1{font:clamp(30px,5vw,53px) Georgia,serif;color:#f0d6b7;margin:3px 0}.public-identity-text{padding-top:46px;min-width:0;overflow-wrap:anywhere}.public-rating{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin:25px 0}.public-rating h2,.public-about h2{font:30px Georgia,serif;color:#f0d6b7;margin:8px 0}.rating-summary{color:#e9bd85}.rating-buttons{display:flex;gap:8px;flex-wrap:wrap}.rating-star{font-size:33px;line-height:1.2;padding:5px 8px;background:transparent;border:0;color:#76655d;cursor:pointer}.rating-star.active,.rating-star:hover{color:#e9bb77}.rating-star:disabled{opacity:.4;cursor:not-allowed}.profile-directory-prompt{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.profile-own-rating{color:#e9bd85;margin:8px 0}@media(max-width:680px){.public-rating{grid-template-columns:1fr}.public-identity{margin:-40px 16px 20px;gap:12px}.public-avatar{width:88px;height:88px}.public-identity-text{padding-top:38px}.public-cover{height:170px}.brand-emblem{width:26px;height:26px}}
+
+
+/* ELSEBORN COMMUNITY v2 — profile visual overhaul */
+.site-header .brand{gap:13px!important;display:inline-flex!important;align-items:center!important}
+.site-header .brand .brand-emblem{width:51px!important;height:51px!important;object-fit:contain;filter:drop-shadow(0 0 12px #df967a80)}
+@media(max-width:600px){.site-header .brand .brand-emblem{width:42px!important;height:42px!important}}
+.enhanced-profile,.public-cover,.public-rating,.public-about,.directory-card{box-shadow:0 16px 48px #0003}
+.enhanced-profile{border-radius:12px!important;border:1px solid #8e624d!important;background:linear-gradient(155deg,#2b1d21,#171115)!important}
+.profile-cover,.public-cover{height:290px!important;background-position:center!important;background-size:cover!important;overflow:hidden}
+.profile-cover:after,.public-cover:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 35%,#1b1016c9 100%)}
+.profile-cover .cover-label,.public-cover .cover-label{z-index:2;position:absolute}
+.profile-identity{align-items:center!important;margin:-62px 36px 16px!important}
+.profile-identity h2{font-size:clamp(35px,5vw,56px)!important}
+.avatar-large,.public-avatar,.directory-avatar{box-shadow:0 8px 24px #0009,inset 0 0 0 1px #e5b18b45}
+.avatar-large{width:126px!important;height:126px!important}
+.public-cover{position:relative;border-radius:12px 12px 0 0!important}
+.public-identity{padding:0 18px 16px;gap:25px;margin:-64px 26px 0!important;align-items:center!important}
+.public-identity-text{padding-top:54px!important}
+.public-avatar{height:136px!important;width:136px!important;border:5px solid #1a1117!important;z-index:3}
+.public-identity h1{font-size:clamp(38px,5.5vw,66px)!important;margin:0 0 5px!important}
+.public-profile-shell{border:1px solid #76513f;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#261a1e,#140f13);margin:20px 0 26px}
+.public-profile-shell .public-cover{border:0!important}
+.public-rating,.public-about{border-radius:10px!important;padding:32px!important;background:linear-gradient(140deg,#291c20,#1a1318)!important}
+.public-rating{align-items:center;gap:30px!important}
+.public-rating h2{font-size:clamp(28px,4vw,40px)!important}
+.rating-summary{font-size:20px;line-height:1.5;min-height:30px}
+.rating-buttons{gap:4px!important;margin:10px 0}
+.rating-star{font-size:38px!important;padding:4px 6px!important;transition:transform .15s,color .15s}
+.rating-star:hover{transform:scale(1.16)}
+.rating-star:disabled{opacity:.6}
+.directory-grid{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))!important;gap:24px!important}
+.directory-card{border-radius:12px!important;background:linear-gradient(150deg,#2b1c20,#181217)!important}
+.directory-card:hover{transform:translateY(-6px)!important;box-shadow:0 20px 44px #0007;border-color:#e1a97c!important}
+.directory-banner{height:130px!important;background-position:center!important;background-size:cover!important}
+.directory-avatar{width:92px!important;height:92px!important;margin-top:-46px!important;border-width:5px!important}
+.directory-content{padding:0 22px 24px!important}
+.directory-name{font-size:30px!important}
+.directory-stars{font-size:16px!important;padding-top:9px;border-top:1px solid #684a3e55}
+.profile-directory-prompt .button{min-width:190px;text-align:center}
+.community-presence.online:before{animation:ebPulse 2s ease-in-out infinite}
+@keyframes ebPulse{50%{box-shadow:0 0 0 5px #78d8a322}}
+@media(max-width:680px){.profile-cover,.public-cover{height:190px!important}.profile-identity{margin:-42px 14px 10px!important}.avatar-large{width:90px!important;height:90px!important}.public-avatar{height:95px!important;width:95px!important}.public-identity{margin:-44px 8px 0!important;gap:12px!important}.public-identity-text{padding-top:35px!important}.public-rating,.public-about{padding:22px!important}}
