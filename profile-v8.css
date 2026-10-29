@@ -26,7 +26,7 @@ body{background:radial-gradient(ellipse at 50% 0%,#33201c 0%,#100c10 48%,#0b090c
 .eb-tabs button.active{color:#fbe0b9;background:linear-gradient(#583522,#251719);border-bottom-color:#e0a45e}
 .eb-card{border:1px solid #79513b;border-radius:8px;background:linear-gradient(130deg,#26191b,#130f13);padding:30px 36px;box-shadow:0 10px 28px #0005}
 .eb-card h2{font:clamp(26px,2.5vw,36px) Georgia,serif;color:#f1d6b2}
-.eb-about{min-height:240px;background:#211519 url('assets/elseborn-about-me-fade.webp') center center/cover no-repeat}
+.eb-about{min-height:240px;background:#211519 url('assets/elseborn-about-me-fade.webp?v=20261029') center center/cover no-repeat}
 .eb-about p{max-width:630px;line-height:1.85;font-size:15px}
 .eb-progress-card{background:linear-gradient(110deg,#261a1b,#151014)}
 .eb-section-title{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:16px}
