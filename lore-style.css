@@ -5,3 +5,15 @@ body.lore-body{background:radial-gradient(ellipse at 34% 0%,#4d1b1c55,transparen
 .lore-article p{line-height:1.65;margin-bottom:13px}
 @media(max-width:1050px){.lore-visual{align-self:auto;min-height:570px;height:570px}}
 @media(max-width:620px){.lore-visual{min-height:440px;height:440px}}
+
+/* Etheria v3: match image height to the complete left column */
+@media(min-width:1051px){
+ .lore-shell{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(390px,1fr)!important;align-items:stretch!important;gap:36px!important}
+ .lore-left{min-width:0}
+ .lore-visual{position:relative!important;align-self:stretch!important;height:auto!important;min-height:100%!important;max-height:none!important;margin:0!important;overflow:hidden!important}
+ .lore-visual img{position:absolute!important;inset:7px!important;width:calc(100% - 14px)!important;height:calc(100% - 14px)!important;max-height:none!important;object-fit:cover!important;object-position:center!important}
+}
+.lore-article p{margin:0 0 12px!important;line-height:1.55!important}
+.lore-article h2{margin-bottom:13px!important}
+@media(max-width:1050px){.lore-visual{height:650px!important;min-height:650px!important;max-width:100%!important}.lore-visual img{position:absolute!important;inset:7px!important;width:calc(100% - 14px)!important;height:calc(100% - 14px)!important;object-fit:cover!important}}
+@media(max-width:620px){.lore-visual{height:480px!important;min-height:480px!important}}
